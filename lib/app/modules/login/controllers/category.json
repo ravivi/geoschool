@@ -1,0 +1,11 @@
+{
+    "data": [{
+        "_id": "61f2c77ae157c9e528bf73b8",
+        "nom": "bandji",
+        "categorie_pour": "6171d767365e75002315b307",
+        "createdAt": "2022-01-27T16:25:30.927Z",
+        "updatedAt": "2022-01-27T16:25:30.927Z",
+        "__v": 0
+    }],
+    "success": true
+}

@@ -111,6 +111,6 @@ class IntroController extends GetxController {
    
     authService.removeUser();
 
-    Get.offAndToNamed(Routes.LOGIN);
+    // Get.offAndToNamed(Routes.LOGIN);
   }
 }

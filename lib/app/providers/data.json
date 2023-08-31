@@ -1,0 +1,63 @@
+{
+    "query": [
+        {
+            "id": 1,
+            "libelle_cycle": "Certificat d'Aptitude Professionnelle (CAP)",
+            "libelle_abbr": "CAP",
+            "created_at": "2021-01-29T17:37:45.000000Z",
+            "updated_at": "2021-01-29T17:37:45.000000Z",
+            "created_by": "1",
+            "updated_by": "1",
+            "filieres": [
+                {
+                    "id": 8,
+                    "etablissement_id": 2,
+                    "filiere_id": 60,
+                    "cycle_id": 1,
+                    "serie_id": 0,
+                    "created_at": "2023-05-08T11:35:00.000000Z",
+                    "updated_at": "2023-05-08T11:35:00.000000Z",
+                    "created_by": "1",
+                    "updated_by": "1",
+                    "nom_etab": "CFPT Tengrela",
+                    "libelle_cycle": "Certificat d'Aptitude Professionnelle (CAP)",
+                    "libelle_filiere": "Construction Métallique"
+                }
+            ],
+            "schools": [
+                {
+                    "id": 2,
+                    "statutetablissent_id": 1,
+                    "commune_id": 359,
+                    "dd_id": 19,
+                    "code_etab": "2",
+                    "nom_etab": "CFPT Tengrela",
+                    "code_administratif": null,
+                    "num_auto_creation": null,
+                    "date_auto_creation": "2023-05-08T00:00:00.000000Z",
+                    "num_auto_ouverture": null,
+                    "date_auto_ouverture": "2023-05-08T00:00:00.000000Z",
+                    "date_ouverture": "2023-05-08T00:00:00.000000Z",
+                    "adresse_etab": "FHFV+4FX, Tingréla",
+                    "telephone_etab": null,
+                    "email_etab": null,
+                    "bp_etab": null,
+                    "cellulaire_etab": null,
+                    "logo_etab": "",
+                    "longitude": 10.472844742422208,
+                    "latitude": -6.406251945159952,
+                    "created_at": "2021-02-03T14:10:07.000000Z",
+                    "updated_at": "2023-05-08T11:35:00.000000Z",
+                    "created_by": "1",
+                    "updated_by": "1",
+                    "active": 1,
+                    "picture_1": "images/2018-10-19 (1).jpg",
+                    "picture_2": "images/2018-10-19 (2).jpg",
+                    "picture_3": "images/2018-10-19 (3).jpg",
+                    "picture_4": "images/2018-10-19.jpg",
+                    "picture_5": "images/g.jpg"
+                }
+            ]
+        }
+    ]
+}

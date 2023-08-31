@@ -13,6 +13,7 @@ import '../../../data/api_request.dart';
 import '../../../routes/app_pages.dart';
 
 import '../../../services/auth_service.dart';
+import '../CycleFiltered.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement ProductlistController
@@ -21,13 +22,22 @@ class HomeController extends GetxController {
   RxList foundschoolList = <School>[].obs;
   String serverUrl = "https://inscriptions.etfp.ci/api";
   RxBool isLoading = false.obs;
+  RxBool isLoadingF = false.obs;
   RxList<School> schoolList = <School>[].obs;
+  RxList<FilteredCycle> filteredCycleList = <FilteredCycle>[].obs;
+  List<FilteredSchool> cap = [],
+      bep = [],
+      bt = [],
+      bp = [],
+      bts = [],
+      cqp = [],
+      pcap = [],
+      bac = [];
+  var selectedCycle = Rxn<FilteredCycle>();
   RxBool isProblem = false.obs;
+  RxBool isProblemF = false.obs;
 
-
-
-
-    RxList<School> establishments = <School>[].obs;
+  RxList<School> establishments = <School>[].obs;
   RxString searchQuery = ''.obs;
   RxString selectedFiliere = ''.obs;
   RxString selectedNiveau = ''.obs;
@@ -46,18 +56,20 @@ class HomeController extends GetxController {
 
   List<School> get filteredEstablishments {
     return establishments.where((establishment) {
-      final filiereMatch = selectedFiliere.value.isEmpty || establishment.filieres!.contains(selectedFiliere.value);
-      final cycleMatch = selectedNiveau.value.isEmpty || establishment.cycles!.contains(selectedNiveau.value);
+      final filiereMatch = selectedFiliere.value.isEmpty ||
+          establishment.filieres!.contains(selectedFiliere.value);
+      final cycleMatch = selectedNiveau.value.isEmpty ||
+          establishment.cycles!.contains(selectedNiveau.value);
       return filiereMatch || cycleMatch;
     }).toList();
   }
-
 
   @override
   void onInit() {
     print("object");
 
     getschoolList();
+    getfilteredCycleList();
     foundschoolList.value = schoolList;
 
     super.onInit();
@@ -80,11 +92,11 @@ class HomeController extends GetxController {
   getschoolList() async {
     isLoading(true);
     isProblem(false);
-   
+
     try {
       final response = await ApiRequest().dio.get(
-        "${serverUrl}/schools",
-      );
+            "${serverUrl}/schools",
+          );
       print(response.statusCode);
       var data = response.data;
       print(isLoading);
@@ -108,6 +120,49 @@ class HomeController extends GetxController {
       print("probleme ================== $isProblem+ $e");
     }
   }
+
+  //recuperation des filteredCycleList
+
+  getfilteredCycleList() async {
+    isLoadingF(true);
+    isProblemF(false);
+
+    try {
+      final response = await ApiRequest().dio.get(
+            "${serverUrl}/cycles",
+          );
+      print(response.statusCode);
+      var data = response.data;
+      print(isLoading);
+
+      if (response.statusCode == 200) {
+        print("*************************");
+
+        for (var item in data["query"]) {
+          print("Premier filterdCycle $filteredCycleList");
+          if (item["schools"] == null || item["filieres"] == null) {
+            print("Null");
+            // filteredCycleList.add(FilteredCycle.fromJson(item));
+          } else {
+            filteredCycleList.add(FilteredCycle.fromJson(item));
+          }
+
+          print("==================================== ${item}");
+          // print(schoolList[0].nomEtab);
+          isLoadingF(false);
+          isProblemF(false);
+        }
+        print(filteredCycleList[0].libelleCycle);
+      } else {
+        isLoading(false);
+        print("Non non");
+      }
+    } on DioError catch (e) {
+      isProblemF(true);
+      print("probleme ================== $isProblem+ $e");
+    }
+  }
+
   //recuperation des schoolList
 
   void filterschoolList(String name) {
@@ -125,10 +180,5 @@ class HomeController extends GetxController {
     foundschoolList.value = results;
   }
 
-  // logout() async {
 
-  //   authService.removeUser();
-
-  //   Get.offAndToNamed(Routes.LOGIN);
-  // }
 }

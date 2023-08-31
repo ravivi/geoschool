@@ -103,99 +103,108 @@ class HomeView extends GetView<HomeController> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            width: Get.width - 100,
-                            height: 40.h,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 230, 233, 237),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Form(
-                              child: TextFormField(
-                                onChanged: (value) =>
-                                    controller.filterschoolList(value),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Rechercher un etablissement ...",
-                                    suffixIcon: Icon(Icons.search)),
-                              ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          width: Get.width - 100,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 230, 233, 237),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Form(
+                            child: TextFormField(
+                              onChanged: (value) =>
+                                  controller.filterschoolList(value),
+                              decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Rechercher un etablissement ...",
+                                  suffixIcon: Icon(Icons.search)),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.bottomSheet(Container(
-                                padding: EdgeInsets.all(10),
-                                height: Get.height / 1.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      // padding: EdgeInsets.symmetric(vertical: 10),
-
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Cycle',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          IconButton(
-                                              onPressed: () {
-                                                Get.back();
-                                              },
-                                              icon: Icon(Icons.close))
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                        child: ListView(
-                                      physics: BouncingScrollPhysics(),
-                                      children: [
-                                        for (var item in cycles)
-                                          ListTile(
-                                            leading: Icon(Icons.location_on),
-                                            title: Text(
-                                              item,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ),
-                                      ],
-                                    ))
-                                  ],
-                                ),
-                              ));
-                            },
-                            child: Container(
-                              height: 40.h,
-                              width: 60,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.bottomSheet(Container(
+                              padding: EdgeInsets.all(10),
+                              height: Get.height / 1.5,
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(.1),
-                                      offset: Offset(0, 10),
-                                      blurRadius: 10),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    // padding: EdgeInsets.symmetric(vertical: 10),
+
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Cycle',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            icon: Icon(Icons.close))
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                      child: ListView(
+                                    physics: BouncingScrollPhysics(),
+                                    children: [
+                                      for (var item
+                                          in controller.filteredCycleList)
+                                        ListTile(
+                                          onTap: (){
+                                            Get.toNamed(Routes.CYCLEPAGE);
+                          
+                                          },
+                                          leading:
+                                              Icon(Icons.dashboard_outlined),
+                                          title: Text(
+                                            item.libelleCycle.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                    ],
+                                  ))
                                 ],
                               ),
-                              alignment: Alignment.center,
-                              child: Icon(Icons.filter_list_outlined),
+                            ));
+                          },
+                          child: Container(
+                            height: 40.h,
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(.1),
+                                    offset: Offset(0, 1),
+                                    blurRadius: 5),
+                              ],
+                            ),
+                            alignment: Alignment.center,
+                            child: Icon(
+                              Icons.filter_list_outlined,
+                              color: kPrimaryColor,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 10.h,
@@ -387,4 +396,5 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
+
 }

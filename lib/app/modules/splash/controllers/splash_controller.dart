@@ -22,8 +22,8 @@ class SplashController extends GetxController {
 
   redirect() {
     Future.delayed(Duration(seconds: 2), () {
-      Get.offAllNamed(
-          authService.getUserData() == null ? Routes.LOGIN : Routes.HOME);
+      // Get.offAllNamed(
+      //     authService.getUserData() == null ? Routes.LOGIN : Routes.HOME);
     });
   }
 

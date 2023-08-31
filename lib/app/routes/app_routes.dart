@@ -9,7 +9,7 @@ abstract class Routes {
   static const DETAIL = _Paths.DETAIL;
   static const VIEWMAP = _Paths.VIEWMAP;
   static const SPLASH = _Paths.SPLASH;
-  static const LOGIN = _Paths.LOGIN;
+  static const CYCLEPAGE = _Paths.CYCLEPAGE;
   static const PRODUCTLIST = _Paths.PRODUCTLIST;
   static const PRODUCTDETAIL = _Paths.PRODUCTDETAIL;
   static const CART = _Paths.CART;
@@ -22,7 +22,7 @@ abstract class _Paths {
   static const DETAIL = '/detail';
   static const VIEWMAP = '/viewmap';
   static const SPLASH = '/splash';
-  static const LOGIN = '/login';
+  static const CYCLEPAGE = '/cyclepage';
   static const PRODUCTLIST = '/productlist';
   static const PRODUCTDETAIL = '/productdetail';
   static const CART = '/cart';
